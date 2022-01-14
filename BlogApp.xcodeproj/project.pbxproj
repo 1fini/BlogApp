@@ -17,6 +17,8 @@
 		37CBA13927921875001B035C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CBA10F27921873001B035C /* ContentView.swift */; };
 		37CBA13A27921875001B035C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37CBA11027921874001B035C /* Assets.xcassets */; };
 		37CBA13B27921875001B035C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37CBA11027921874001B035C /* Assets.xcassets */; };
+		37CBA14B27921F32001B035C /* PostContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CBA14A27921F32001B035C /* PostContent.swift */; };
+		37CBA14C27921F32001B035C /* PostContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CBA14A27921F32001B035C /* PostContent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,7 @@
 		37CBA12E27921875001B035C /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37CBA13227921875001B035C /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		37CBA13427921875001B035C /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		37CBA14A27921F32001B035C /* PostContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostContent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +103,7 @@
 				37CBA10E27921873001B035C /* BlogAppApp.swift */,
 				37CBA10F27921873001B035C /* ContentView.swift */,
 				37CBA11027921874001B035C /* Assets.xcassets */,
+				37CBA14A27921F32001B035C /* PostContent.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -299,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37CBA14B27921F32001B035C /* PostContent.swift in Sources */,
 				37CBA13827921875001B035C /* ContentView.swift in Sources */,
 				37CBA13627921875001B035C /* BlogAppApp.swift in Sources */,
 			);
@@ -308,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37CBA14C27921F32001B035C /* PostContent.swift in Sources */,
 				37CBA13927921875001B035C /* ContentView.swift in Sources */,
 				37CBA13727921875001B035C /* BlogAppApp.swift in Sources */,
 			);
