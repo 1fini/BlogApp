@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WebKit
 
 struct ContentView: View {
     @State private var results = [Post]()
@@ -18,7 +19,9 @@ struct ContentView: View {
                 
                 Text(item.title.rendered)
                     .font(.headline)
-                Text(String.init(item.id))
+                WebView(text: item.excerpt.rendered)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                    .font(.body)
             }
         }
         .task {
@@ -53,13 +56,17 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct Post : Codable {
-        var id : Int
-//        var date : Date
-        var slug : String
-//        var link : URL
-        var title : Rendered
+    var id : Int
+    var slug : String
+    var title : Rendered
+    var excerpt : Excerpt
+}
+
+struct Excerpt : Codable {
+    var rendered : String
 }
 
 struct Rendered : Codable {
     var rendered : String
 }
+
