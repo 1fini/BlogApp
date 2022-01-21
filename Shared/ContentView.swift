@@ -10,22 +10,30 @@ import WebKit
 
 struct ContentView: View {
     @State private var results = [Post]()
+    @StateObject var store = BlogPostsStore()
     
     var body: some View {
         Text("Hello, world!")
-        List(results, id: \.id) {
-            item in
-            VStack(alignment: .leading){
-                
-                Text(item.title.rendered)
-                    .font(.headline)
-                WebView(text: item.excerpt.rendered)
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                    .font(.body)
+        VStack(alignment: .center){
+                if(store.blogPosts.count > 0){
+                BlogPostCardMain(blogPost: store.blogPosts.first!)
+                    .environmentObject(store)
+                }
+            List(results, id: \.id) {
+                item in
+                VStack(alignment: .leading){
+                    Text(item.title.rendered)
+                        .font(.headline)
+                    WebView(text: item.excerpt.rendered)
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                        .font(.body)
+                }
             }
         }
         .task {
+            await store.refreshView()
             await loadData()
+            
         }
     }
     
