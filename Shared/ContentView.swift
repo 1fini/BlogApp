@@ -13,48 +13,69 @@ struct ContentView: View {
     @StateObject var store = BlogPostsStore()
     
     var body: some View {
-        Text("Hello, world!")
-        VStack(alignment: .center){
-                if(store.blogPosts.count > 0){
-                BlogPostCardMain(blogPost: store.blogPosts.first!)
-                    .environmentObject(store)
-                }
-            List(results, id: \.id) {
-                item in
-                VStack(alignment: .leading){
-                    Text(item.title.rendered)
-                        .font(.headline)
-                    WebView(text: item.excerpt.rendered)
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                        .font(.body)
-                }
-            }
+        VStack {
+            Text("Parents Impliqués")
         }
-        .task {
+        .foregroundColor(.primary)
+        .font(.title)
+        .shadow(color: Color.gray, radius: 2, x: 1, y: 1)
+        TabView {
+            MainView()
+                .environmentObject(store)
+                .tabItem {
+                    Image(systemName: "house.fill")
+                    Text("Accueil")
+                }
+            AllPosts()
+                .environmentObject(store)
+                .tabItem {
+                    Image(systemName: "list.dash")
+                    Text("Articles")
+                }
+        }.task {
             await store.refreshView()
-            await loadData()
-            
         }
+//        VStack(alignment: .center){
+//                if(store.blogPosts.count > 0){
+//                BlogPostCardMain(blogPost: store.blogPosts.first!)
+//                    .environmentObject(store)
+//                }
+//            List(results, id: \.id) {
+//                item in
+//                VStack(alignment: .leading){
+//                    Text(item.title.rendered)
+//                        .font(.headline)
+//                    WebView(text: item.excerpt.rendered)
+//                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+//                        .font(.body)
+//                }
+//            }
+//        }
+//        .task {
+//            await store.refreshView()
+//            await loadData()
+//            
+//        }
     }
     
-    func loadData() async {
-        
-        guard let url = URL(string: "https://www.parentsimpliques.fr/wp-json/wp/v2/posts") else {
-            print("Invalid URL")
-            return
-        }
-
-        do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-
-            // more code to come
-            if let decodedResponse = try? JSONDecoder().decode([Post].self, from: data) {
-                results = decodedResponse
-            }
-        } catch {
-            print("Invalid data")
-        }
-    }
+//    func loadData() async {
+//        
+//        guard let url = URL(string: "https://www.parentsimpliques.fr/wp-json/wp/v2/posts") else {
+//            print("Invalid URL")
+//            return
+//        }
+//
+//        do {
+//            let (data, _) = try await URLSession.shared.data(from: url)
+//
+//            // more code to come
+//            if let decodedResponse = try? JSONDecoder().decode([Post].self, from: data) {
+//                results = decodedResponse
+//            }
+//        } catch {
+//            print("Invalid data")
+//        }
+//    }
 }
 
 struct ContentView_Previews: PreviewProvider {
