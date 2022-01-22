@@ -19,7 +19,7 @@ struct AllPosts: View {
                     }
                 }
             }
-            .navigationTitle("All blog posts")
+            .navigationTitle("Tous les articles")
             .listStyle(InsetListStyle())
         }
         .task {

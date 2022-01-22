@@ -44,7 +44,7 @@ struct BlogPostCardMain: View {
                     Spacer()
                 }
                 HStack {
-                    Text(blogPost.subtitle)
+                    HTMLStringView(htmlContent: blogPost.subtitle)
                         .multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
                         .lineLimit(3)

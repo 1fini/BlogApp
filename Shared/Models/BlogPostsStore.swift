@@ -6,16 +6,31 @@
 //
 
 import SwiftUI
+import WebKit
 import Foundation
 
 class BlogPostsStore: ObservableObject {
     @Published var blogPosts: [BlogPost] = articleList
     
-//    init() async {
-//        DispatchQueue.main.async {
-//            self.refreshView()
-//        }
-//    }
+    func loadMediaData(mediaData: String) async -> String {
+        guard let url = URL(string:mediaData)
+        else {
+            print("Invalid URL")
+            return ""
+        }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            
+            if let decodedResponse = try? JSONDecoder().decode([Media].self, from: data){
+                return decodedResponse.first?.guid.rendered ?? ""
+            }
+        } catch {
+            print("Invalid Media Data")
+            return ""
+        }
+        return ""
+    }
     
     func refreshView() async {
         blogPosts = []
@@ -30,16 +45,21 @@ class BlogPostsStore: ObservableObject {
             // more code to come
             if let decodedResponse = try? JSONDecoder().decode([Post].self, from: data) {
                 decodedResponse.forEach {item in
+                    
                     DispatchQueue.main.async {
-                        self.blogPosts.append(
-                            BlogPost(
-                                title : item.title.rendered,
-                                subtitle: item.excerpt.rendered,
-                                image: "https://www.parentsimpliques.fr/wp-content/uploads/2021/01/C56895D7-40B2-494B-94BB-B34763E00378-1024x1024.png",
-                                blogpost: item.excerpt.rendered,
-                                featured: false
+                        Task {
+                            let imageString = await self.loadMediaData(mediaData: item.links.attachment.first?.href ?? "")
+
+                            self.blogPosts.append(
+                                BlogPost(
+                                    title : item.title.rendered,
+                                    subtitle: item.excerpt.rendered,
+                                    image: imageString,
+                                    blogpost: item.excerpt.rendered,
+                                    featured: false
+                                )
                             )
-                        )
+                        }
                     }
                 }
             }
