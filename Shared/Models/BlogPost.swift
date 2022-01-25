@@ -8,7 +8,10 @@
 import Foundation
 import SwiftUI
 import WebKit
+#if !os(macOS)
 import UIKit
+#endif
+
 
 struct BlogPost : Identifiable {
     let id = UUID()
@@ -70,10 +73,9 @@ struct HTMLStringView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: WKWebView, context: Context) {
-        let headerString = "<header><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, user-scalable=no'></header>"
+        let headerString = "<header><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'></header>"
         uiView.loadHTMLString(headerString + htmlContent, baseURL: nil)
     }
 }
-
 
 var articleList : [BlogPost] = []

@@ -43,8 +43,8 @@ struct BlogPostView: View {
                             Spacer()
                         }
                         .frame(maxWidth: .infinity)
-                        
-                        HTMLStringView(htmlContent: blogPost.blogpost)
+                                                
+                            HTMLStringView(htmlContent: blogPost.blogpost)
                             .multilineTextAlignment(.leading)
                             .font(.body)
                             .foregroundColor(Color.primary.opacity(0.9))
@@ -53,7 +53,6 @@ struct BlogPostView: View {
                             .frame(height: 500)
                     }
                     .padding(.horizontal, 20)
-
                     Spacer()
                 }
                 .frame(maxWidth: .infinity)
