@@ -44,13 +44,13 @@ struct BlogPostView: View {
                         }
                         .frame(maxWidth: .infinity)
                                                 
-                            HTMLStringView(htmlContent: blogPost.blogpost)
-                            .multilineTextAlignment(.leading)
-                            .font(.body)
-                            .foregroundColor(Color.primary.opacity(0.9))
-                            .padding(.bottom, 25)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 500)
+                        HTMLStringView(htmlContent: blogPost.blogpost)
+                        .multilineTextAlignment(.leading)
+                        .font(.body)
+                        .foregroundColor(Color.primary.opacity(0.9))
+                        .padding(.bottom, 25)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 500)
                     }
                     .padding(.horizontal, 20)
                     Spacer()

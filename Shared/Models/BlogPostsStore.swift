@@ -55,7 +55,7 @@ class BlogPostsStore: ObservableObject {
                                     title : item.title.rendered,
                                     subtitle: item.excerpt.rendered,
                                     image: imageString,
-                                    blogpost: item.excerpt.rendered,
+                                    blogpost: item.content.rendered,
                                     featured: false
                                 )
                             )
